@@ -29,11 +29,12 @@ spec:
         app: greeter
     spec:
       containers:
-        image: gcr.io/$GOOGLE_CLOUD_PROJECT/grpc-greeter-java
-        imagePullPolicy: Always
-        name: greeter
-        ports:
-        - containerPort: 8083
+        - args:
+          image: gcr.io/$GOOGLE_CLOUD_PROJECT/grpc-greeter-java
+          imagePullPolicy: Always
+          name: greeter
+          ports:
+          - containerPort: 8083
 # [END istio_grpc_greeter_go_manifests_deployment_greeter]
 ---
 # [START istio_grpc_greeter_go_manifests_service_greeter]
@@ -45,7 +46,7 @@ spec:
   ports:
   - name: grpc
     port: 80
-    targetPort: 8083
+    targetPort: 9090
     protocol: TCP
   selector:
     app: greeter
